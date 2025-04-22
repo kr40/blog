@@ -43,6 +43,6 @@ export async function loadAndParsePosts() {
   posts.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
 
   allPostsData = posts;
-  console.log("Posts loaded and parsed:", allPostsData.length);
+  // console.log("Posts loaded and parsed:", allPostsData.length); // Removed for production
   return getAllPosts();
 }

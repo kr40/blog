@@ -71,4 +71,4 @@ if (!loaderHasBeenShown && loadingOverlay && progressBar) {
 
 document.addEventListener('DOMContentLoaded', initializeApp);
 
-console.log('Main entry point loaded.');
+// console.log('Main entry point loaded.'); // Removed for production
