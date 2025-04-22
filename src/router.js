@@ -1,12 +1,12 @@
 import { getAllPosts } from './data.js';
 import { updateActiveNavLink } from './ui/nav.js';
 import {
-    renderAboutPage,
-    renderContactPage,
-    renderDisclaimerPage,
-    renderNotFound,
-    renderPostList,
-    renderSinglePost
+	renderAboutPage,
+	renderContactPage,
+	renderDisclaimerPage,
+	renderNotFound,
+	renderPostList,
+	renderSinglePost
 } from './ui/pages.js';
 import { slugify } from './utils.js';
 
