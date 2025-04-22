@@ -140,9 +140,13 @@ export function renderAboutPage(targetElement) {
                 <h2>About ./The_Exploit_Log</h2>
             </header>
             <div class="post-content">
-                <p>Welcome to The Exploit Log, your terminal-themed portal for cybersecurity insights, tutorials, and tool analysis.</p>
-                <p>This project is dedicated to exploring the world of ethical hacking, defensive security, and the code that powers it all.</p>
-                <p>Created by [Your Name/Handle] as a demonstration project.</p>
+                <p>Welcome to The Exploit Log, a blog by Kartik Rao (also known as K4Rt1k or kr40).</p>
+                <p>Based in India, I focus on Red Teaming and Cybersecurity Research. Here, I share my findings, research, CTF writeups, and tutorials related to the world of ethical hacking and security.</p>
+                <p>Connect with me:</p>
+                <ul>
+                    <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kr40/" target="_blank">linkedin.com/in/kr40</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/kr40/" target="_blank">github.com/kr40</a></li>
+                </ul>
             </div>
         </article>
     `;
@@ -155,22 +159,25 @@ export function renderContactPage(targetElement) {
     targetElement.innerHTML = `
         <article class="post">
             <header class="post-header">
-                <h2>Contact Us</h2>
+                <h2>Contact</h2>
             </header>
             <div class="post-content">
-                <p>Have questions, suggestions, or want to report a vulnerability (in the site demo, not a real one!)?</p>
-                <p>Reach out via the following (placeholder):</p>
+                <p>Have questions, suggestions, or want to discuss a project? Reach out:</p>
                 <ul>
-                    <li>Email: contact@theexploitlog.example.com</li>
-                    <li>GitHub: [Link to Repo]</li>
-                    <li>Twitter: @TheExploitLog (maybe)</li>
+                    <li><strong>Email:</strong> <a href="mailto:kr40.git@gmail.com">kr40.git@gmail.com</a></li>
+                    <li><strong>Twitter:</strong> <a href="https://twitter.com/kr40_in" target="_blank">@kr40_in</a></li>
+                    <li><strong>GitHub:</strong> <a href="https://github.com/kr40/" target="_blank">github.com/kr40</a></li>
                 </ul>
-                 <p>Alternatively, fill out this definitely non-functional form:</p>
-                <form action="#">
-                    <div><label>Name: <input type="text" disabled></label></div>
-                    <div><label>Email: <input type="email" disabled></label></div>
-                    <div><label>Message: <textarea disabled></textarea></label></div>
-                    <div><button type="submit" disabled>[ Send Message ]</button></div>
+                <hr style="border-color: var(--border-color); margin: 20px 0;">
+                <p>I also provide professional <strong>Software Development</strong> and <strong>Cybersecurity Solutions</strong> through my startup, <strong>PageSync</strong>.</p>
+                <p>Feel free to connect for inquiries.</p>
+
+                 <p style="margin-top: 30px; color: #888; font-style: italic;">// The form below is currently non-functional. Please use the contact methods above.</p>
+                <form action="#" style="opacity: 0.5; pointer-events: none;">
+                    <div><label style="display: block; margin-bottom: 5px;">Name:</label> <input type="text" disabled style="width: 100%; background: #333; border: 1px solid var(--border-color); color: #888; padding: 5px;"></div>
+                    <div style="margin-top: 10px;"><label style="display: block; margin-bottom: 5px;">Email:</label> <input type="email" disabled style="width: 100%; background: #333; border: 1px solid var(--border-color); color: #888; padding: 5px;"></div>
+                    <div style="margin-top: 10px;"><label style="display: block; margin-bottom: 5px;">Message:</label> <textarea disabled style="width: 100%; height: 80px; background: #333; border: 1px solid var(--border-color); color: #888; padding: 5px;"></textarea></div>
+                    <div style="margin-top: 15px;"><button type="submit" disabled style="padding: 8px 15px; background: #444; border: 1px solid var(--border-color); color: #888; cursor: not-allowed;">[ Send Message ]</button></div>
                 </form>
             </div>
         </article>
