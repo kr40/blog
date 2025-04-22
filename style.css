@@ -1,4 +1,6 @@
 /* --- Global Styles & Variables --- */
+@import 'highlight.js/styles/github-dark.css';
+
 :root {
 	--background-color: #1a1a1a;
 	/* Very dark grey */
@@ -207,16 +209,39 @@ a:focus {
 
 /* Code Blocks */
 pre {
-	background-color: var(--code-bg-color);
+	position: relative;
 	border: 1px solid var(--border-color);
 	padding: 15px;
 	overflow-x: auto;
-	/* Handle long lines */
 	font-family: var(--font-mono);
 	font-size: 0.9em;
-	color: #d0d0d0;
-	/* Slightly different grey for code */
 	margin: 20px 0;
+}
+
+.copy-button {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: var(--code-bg-color);
+	color: var(--accent-color);
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	padding: 3px 8px;
+	font-family: var(--font-mono);
+	font-size: 0.8em;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	opacity: 0.7;
+}
+
+.copy-button:hover {
+	opacity: 1;
+	background-color: rgba(0, 255, 0, 0.1);
+}
+
+.copy-button.copied {
+	background-color: rgba(0, 255, 0, 0.2);
+	color: var(--accent-color);
 }
 
 code {
@@ -224,12 +249,10 @@ code {
 	background-color: var(--code-bg-color);
 	padding: 2px 5px;
 	border-radius: 3px;
-	/* Subtle rounding for inline code */
 	font-size: 0.9em;
 }
 
 pre code {
-	/* Reset styles for code inside pre */
 	background-color: transparent;
 	padding: 0;
 	border-radius: 0;

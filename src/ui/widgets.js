@@ -8,20 +8,18 @@ export function renderRecentPostsWidget(posts, count) {
         return;
     }
 
-    recentPostsListElement.innerHTML = ''; // Clear existing items
+    recentPostsListElement.innerHTML = '';
 
     if (!posts || posts.length === 0) {
         recentPostsListElement.innerHTML = '<li>No posts found.</li>';
         return;
     }
 
-    // Assumes posts are already sorted newest first
     const recentPosts = posts.slice(0, count);
 
     recentPosts.forEach(post => {
         const li = document.createElement('li');
-        // Use slug from metadata for the link
-        const postSlug = post.metadata.slug || '#'; // Fallback slug
+        const postSlug = post.metadata.slug || '#';
         li.innerHTML = `<a href="#/posts/${postSlug}">${post.metadata.title || 'Untitled Post'}</a>`;
         recentPostsListElement.appendChild(li);
     });
@@ -35,7 +33,6 @@ export function renderCategoriesWidget(posts, slugify) {
         return;
     }
 
-    // Extract unique categories
     const categories = new Set();
     posts.forEach(post => {
         if (post.metadata.category) {
@@ -43,7 +40,7 @@ export function renderCategoriesWidget(posts, slugify) {
         }
     });
 
-    categoriesListElement.innerHTML = ''; // Clear existing items
+    categoriesListElement.innerHTML = '';
 
     if (categories.size === 0) {
         categoriesListElement.innerHTML = '<li>No categories found.</li>';
@@ -54,7 +51,7 @@ export function renderCategoriesWidget(posts, slugify) {
 
     sortedCategories.forEach(category => {
         const li = document.createElement('li');
-        const categorySlug = slugify(category); // Use the passed slugify function
+        const categorySlug = slugify(category);
         li.innerHTML = `<a href="#/category/${categorySlug}">[ ${category} ]</a>`;
         categoriesListElement.appendChild(li);
     });
@@ -68,29 +65,26 @@ export function renderAuthorsWidget(posts, slugify) {
         return;
     }
 
-    // Extract unique, non-empty author names
     const authors = new Set();
     posts.forEach(post => {
-        if (post.metadata.author) { // Check if author exists
-            authors.add(post.metadata.author.trim()); // Add trimmed author name
+        if (post.metadata.author) {
+            authors.add(post.metadata.author.trim());
         }
     });
 
-    authorsListElement.innerHTML = ''; // Clear existing items
+    authorsListElement.innerHTML = '';
 
     if (authors.size === 0) {
         authorsListElement.innerHTML = '<li>No authors found.</li>';
         return;
     }
 
-    // Sort authors alphabetically (case-insensitive)
     const sortedAuthors = Array.from(authors).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
-    // Generate and append list items
     sortedAuthors.forEach(author => {
         const li = document.createElement('li');
-        const authorSlug = slugify(author); // Use the passed slugify function
-        li.innerHTML = `<a href="#/author/${authorSlug}">[ ${author} ]</a>`; // Link to author filter route
+        const authorSlug = slugify(author);
+        li.innerHTML = `<a href="#/author/${authorSlug}">[ ${author} ]</a>`;
         authorsListElement.appendChild(li);
     });
 }
@@ -106,7 +100,7 @@ export function renderTagsWidget(posts, slugify) {
     const allTags = posts.flatMap(post => post.metadata.tags || []);
     const uniqueTags = [...new Set(allTags)];
 
-    tagsContainerElement.innerHTML = ''; // Clear existing items
+    tagsContainerElement.innerHTML = '';
 
     if (uniqueTags.length === 0) {
         tagsContainerElement.innerHTML = '<span>No tags found.</span>';
@@ -117,10 +111,10 @@ export function renderTagsWidget(posts, slugify) {
 
     sortedTags.forEach(tag => {
         const a = document.createElement('a');
-        const tagSlug = slugify(tag); // Use the passed slugify function
+        const tagSlug = slugify(tag);
         a.href = `#/tag/${tagSlug}`;
         a.textContent = `#${tag}`;
         tagsContainerElement.appendChild(a);
-        tagsContainerElement.appendChild(document.createTextNode(' ')); // Add space
+        tagsContainerElement.appendChild(document.createTextNode(' '));
     });
 }

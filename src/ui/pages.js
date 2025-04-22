@@ -1,5 +1,63 @@
 // UI functions for rendering main content pages
+import hljs from 'highlight.js'; // Import highlight.js
 import { slugify } from '../utils.js'; // Import slugify
+
+// Helper functions
+function createAuthorLink(authorName) {
+  const name = authorName || 'Unknown Author';
+  const authorSlug = slugify(name);
+  return `<a href="#/author/${authorSlug}">${name}</a>`;
+}
+
+function createTagsHtml(tags) {
+  return tags && Array.isArray(tags)
+    ? tags.map(tag => {
+        const tagSlug = slugify(tag);
+        return `<a href="#/tag/${tagSlug}">[#${tag}]</a>`;
+      }).join(' ')
+    : 'N/A';
+}
+
+// Function to add copy buttons to code blocks
+function addCopyButtonsToCodeBlocks() {
+  const codeBlocks = document.querySelectorAll('pre code');
+
+  codeBlocks.forEach((codeBlock) => {
+    // Only add button if parent doesn't already have one
+    if (!codeBlock.parentNode.querySelector('.copy-button')) {
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.textContent = 'Copy';
+
+      button.addEventListener('click', () => {
+        // Copy text content to clipboard
+        const code = codeBlock.textContent;
+        navigator.clipboard.writeText(code).then(
+          () => {
+            // Visual feedback
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+
+            // Reset after 2 seconds
+            setTimeout(() => {
+              button.textContent = 'Copy';
+              button.classList.remove('copied');
+            }, 2000);
+          },
+          (err) => {
+            console.error('Could not copy code: ', err);
+            button.textContent = 'Error!';
+            setTimeout(() => {
+              button.textContent = 'Copy';
+            }, 2000);
+          }
+        );
+      });
+
+      codeBlock.parentNode.appendChild(button);
+    }
+  });
+}
 
 // Renders the list of posts (homepage, filtered views)
 export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
@@ -25,18 +83,8 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
         const postElement = document.createElement('article');
         postElement.classList.add('post');
 
-        // Create slug for author link
-        const authorName = post.metadata.author || 'Unknown Author';
-        const authorSlug = slugify(authorName);
-        const authorLink = `<a href="#/author/${authorSlug}">${authorName}</a>`;
-
-        // Create links for tags
-        const tagsHtml = post.metadata.tags && Array.isArray(post.metadata.tags)
-            ? post.metadata.tags.map(tag => {
-                const tagSlug = slugify(tag);
-                return `<a href="#/tag/${tagSlug}">[#${tag}]</a>`; // Wrap each tag in a link
-              }).join(' ')
-            : 'N/A'; // Display N/A if no tags
+        const authorLink = createAuthorLink(post.metadata.author);
+        const tagsHtml = createTagsHtml(post.metadata.tags);
 
         let postContentHtml = post.htmlContent;
         let readMoreLink = '';
@@ -64,6 +112,9 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
         targetElement.appendChild(postElement);
     });
 
+    hljs.highlightAll(); // Apply highlighting after adding all posts
+    addCopyButtonsToCodeBlocks();
+
     // Optional: Add pagination if needed
 }
 
@@ -74,18 +125,8 @@ export function renderSinglePost(post, targetElement) {
     const postElement = document.createElement('article');
     postElement.classList.add('post');
 
-    // Create slug for author link
-    const authorName = post.metadata.author || 'Unknown Author';
-    const authorSlug = slugify(authorName);
-    const authorLink = `<a href="#/author/${authorSlug}">${authorName}</a>`;
-
-    // Create links for tags
-    const tagsHtml = post.metadata.tags && Array.isArray(post.metadata.tags)
-        ? post.metadata.tags.map(tag => {
-            const tagSlug = slugify(tag);
-            return `<a href="#/tag/${tagSlug}">[#${tag}]</a>`; // Wrap each tag in a link
-          }).join(' ')
-        : 'N/A'; // Display N/A if no tags
+    const authorLink = createAuthorLink(post.metadata.author);
+    const tagsHtml = createTagsHtml(post.metadata.tags);
 
     postElement.innerHTML = `
       <header class="post-header">
@@ -102,12 +143,14 @@ export function renderSinglePost(post, targetElement) {
       </div>
     `;
     targetElement.appendChild(postElement);
+    hljs.highlightAll(); // Apply highlighting after adding the single post
+    addCopyButtonsToCodeBlocks();
 }
 
 // Renders the About page content
 export function renderAboutPage(targetElement) {
     targetElement.innerHTML = `
-        <article class="post"> <!-- Reuse post styling -->
+        <article class="post">
             <header class="post-header">
                 <h2>About ./The_Exploit_Log</h2>
             </header>
@@ -118,6 +161,8 @@ export function renderAboutPage(targetElement) {
             </div>
         </article>
     `;
+    hljs.highlightAll();
+    addCopyButtonsToCodeBlocks();
 }
 
 // Renders the Contact page content
@@ -145,12 +190,14 @@ export function renderContactPage(targetElement) {
             </div>
         </article>
     `;
+    hljs.highlightAll();
+    addCopyButtonsToCodeBlocks();
 }
 
 // Renders the Disclaimer page content
 export function renderDisclaimerPage(targetElement) {
     targetElement.innerHTML = `
-        <article class="post"> <!-- Reuse post styling -->
+        <article class="post">
             <header class="post-header">
                 <h2>Disclaimer</h2>
             </header>
@@ -161,6 +208,8 @@ export function renderDisclaimerPage(targetElement) {
             </div>
         </article>
     `;
+    hljs.highlightAll();
+    addCopyButtonsToCodeBlocks();
 }
 
 // Renders a 'Not Found' message
@@ -172,4 +221,6 @@ export function renderNotFound(targetElement) {
         <p><a href="#">&larr; Back to posts</a></p>
       </article>
     `;
+    hljs.highlightAll();
+    addCopyButtonsToCodeBlocks();
 }

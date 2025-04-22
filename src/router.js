@@ -1,4 +1,3 @@
-// Routing logic
 import { getAllPosts } from './data.js';
 import { updateActiveNavLink } from './ui/nav.js';
 import {
@@ -13,36 +12,30 @@ import { slugify } from './utils.js';
 
 let contentAreaElement = null;
 
-// Setup routing listeners and get content area reference
 export function setupRouting() {
     contentAreaElement = document.querySelector('.content-area');
     if (!contentAreaElement) {
         console.error('Error: Could not find .content-area element.');
-        return false; // Indicate failure
+        return false;
     }
     window.addEventListener('hashchange', handleRouteChange);
-    return true; // Indicate success
+    return true;
 }
 
-// Handle hash changes and render appropriate content
 export function handleRouteChange() {
     if (!contentAreaElement) {
         console.error('Cannot handle route change, content area not found.');
-        return; // Guard clause
+        return;
     }
 
-    const hash = window.location.hash || '#'; // Default to '#' if empty
-    const allPosts = getAllPosts(); // Get current posts from data module
+    const hash = window.location.hash || '#';
+    const allPosts = getAllPosts();
 
     console.log("Handling route:", hash);
 
-    // Update active nav link
     updateActiveNavLink(hash);
-
-    // Clear existing content
     contentAreaElement.innerHTML = '';
 
-    // Route definitions
     const postMatch = hash.match(/^#\/posts\/(.+)$/);
     const typeMatch = hash.match(/^#\/type\/(.+)$/);
     const categoryMatch = hash.match(/^#\/category\/(.+)$/);

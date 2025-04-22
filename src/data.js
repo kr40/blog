@@ -2,17 +2,13 @@
 import yaml from 'js-yaml';
 import { marked } from 'marked';
 
-// --- Global Store for Posts ---
 let allPostsData = [];
 
-// Function to retrieve all loaded posts (read-only access)
 export function getAllPosts() {
-    return [...allPostsData]; // Return a shallow copy to prevent external modification
+    return [...allPostsData];
 }
 
-// --- Data Loading and Parsing ---
 export async function loadAndParsePosts() {
-  // Clear previous data if reloading
   allPostsData = [];
 
   const blogModules = import.meta.glob('/blogs/*.md', { query: '?raw', import: 'default' });
@@ -44,10 +40,9 @@ export async function loadAndParsePosts() {
     }
   }
 
-  // Sort posts by date (newest first)
   posts.sort((a, b) => new Date(b.metadata.date) - new Date(a.metadata.date));
 
-  allPostsData = posts; // Store globally within this module
+  allPostsData = posts;
   console.log("Posts loaded and parsed:", allPostsData.length);
-  return getAllPosts(); // Return the newly loaded posts
+  return getAllPosts();
 }
