@@ -5,8 +5,6 @@ import { renderAuthorsWidget, renderCategoriesWidget, renderRecentPostsWidget, r
 import { slugify } from './utils.js';
 
 export async function initializeApp() {
-    // console.log("Initializing application..."); // Removed for production
-
     // 1. Load Data
     const posts = await loadAndParsePosts();
     if (!posts) {
@@ -33,6 +31,4 @@ export async function initializeApp() {
       const contentArea = document.querySelector('.content-area');
       if (contentArea) contentArea.innerHTML = '<p>Error initializing site navigation. Please try again later.</p>';
     }
-
-    // console.log("Application initialization complete."); // Removed for production
 }

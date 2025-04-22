@@ -31,8 +31,6 @@ export function handleRouteChange() {
     const hash = window.location.hash || '#';
     const allPosts = getAllPosts();
 
-    // console.log("Handling route:", hash); // Removed for production
-
     updateActiveNavLink(hash);
     contentAreaElement.innerHTML = '';
 

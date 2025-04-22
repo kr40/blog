@@ -3,7 +3,7 @@ import { initializeApp } from './src/app.js';
 // Import Highlight.js theme first
 import 'highlight.js/styles/atom-one-dark.css';
 
-// Import new modular CSS files in order
+// Import CSS files in order
 import './src/styles/base.css';
 import './src/styles/code.css';
 import './src/styles/footer.css';
