@@ -1,6 +1,23 @@
 // UI functions for rendering main content pages
-import hljs from 'highlight.js'; // Import highlight.js
+import hljs from 'highlight.js/lib/core';
+import bash from 'highlight.js/lib/languages/bash';
+import c from 'highlight.js/lib/languages/c';
+import cpp from 'highlight.js/lib/languages/cpp';
+import css from 'highlight.js/lib/languages/css';
+import javascript from 'highlight.js/lib/languages/javascript';
+import python from 'highlight.js/lib/languages/python';
+import xml from 'highlight.js/lib/languages/xml'; // For HTML
 import { slugify } from '../utils.js'; // Import slugify
+
+// Register only the languages we need
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('c', c);
+hljs.registerLanguage('cpp', cpp);
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('html', xml);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('css', css);
 
 // Helper functions
 function createAuthorLink(authorName) {
