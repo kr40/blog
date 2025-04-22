@@ -25,9 +25,9 @@ export function createPaginationControls(currentPage, totalPages, baseUrl) {
 
   // Previous page link
   if (currentPage > 1) {
-    paginationHtml += `<a href="${baseUrl}/page/${currentPage - 1}">&larr; Previous</a>`;
+    paginationHtml += `<a href="${baseUrl}/page/${currentPage - 1}">Previous</a>`;
   } else {
-    paginationHtml += `<span class="disabled">&larr; Previous</span>`;
+    paginationHtml += `<span class="disabled">Previous</span>`;
   }
 
   // Page indicator
@@ -35,9 +35,9 @@ export function createPaginationControls(currentPage, totalPages, baseUrl) {
 
   // Next page link
   if (currentPage < totalPages) {
-    paginationHtml += `<a href="${baseUrl}/page/${currentPage + 1}">Next &rarr;</a>`;
+    paginationHtml += `<a href="${baseUrl}/page/${currentPage + 1}">Next</a>`;
   } else {
-    paginationHtml += `<span class="disabled">Next &rarr;</span>`;
+    paginationHtml += `<span class="disabled">Next</span>`;
   }
 
   paginationHtml += '</div>';

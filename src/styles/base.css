@@ -32,3 +32,11 @@ a:focus {
 	color: var(--secondary-accent);
 	text-decoration: underline;
 }
+
+/* Ensure images are responsive */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	/* Prevents potential extra space below image */
+}

@@ -16,12 +16,51 @@
 		align-items: flex-start;
 	}
 
+	.logo h1 {
+		font-size: 1.8em;
+	}
+
+	.tagline {
+		margin-bottom: 10px;
+		font-size: 0.8em;
+	}
+
 	.main-nav ul {
 		margin-top: 15px;
 		gap: 10px;
 	}
 
-	.logo h1 {
-		font-size: 2em;
+	.main-nav li a {
+		padding: 4px 8px;
+	}
+
+	.post {
+		overflow-x: hidden;
+		/* Prevent post content from causing page scroll */
+	}
+
+	pre {
+		max-width: 100%;
+		/* Ensure pre doesn't contribute to parent overflow */
+		box-sizing: border-box;
+		/* Include padding/border in width calculation */
+		white-space: pre-wrap;
+		word-break: break-all;
+	}
+
+	.post-header h2 {
+		font-size: 1.5em;
+	}
+
+	.widget {
+		padding: 15px;
+	}
+
+	.widget h3 {
+		font-size: 1.1em;
+	}
+
+	.site-footer {
+		padding-top: 15px;
 	}
 }

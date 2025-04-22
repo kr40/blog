@@ -72,7 +72,7 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts", o
 
         if (moreTagIndex !== -1) {
             postContentHtml = postContentHtml.substring(0, moreTagIndex);
-            readMoreLink = `<a href="#/posts/${post.metadata.slug}" class="read-more">[ Continue Reading &rarr; ]</a>`;
+            readMoreLink = `<a href="#/posts/${post.metadata.slug}" class="read-more">[ Continue Reading ]</a>`;
         }
 
         postElement.innerHTML = `
