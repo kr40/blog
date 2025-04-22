@@ -1,0 +1,70 @@
+/* --- Main Content & Post Styles --- */
+.content-area {
+	grid-area: content;
+}
+
+.post {
+	background-color: #222222;
+	border: 1px solid var(--border-color);
+	margin-bottom: 30px;
+	padding: 25px;
+}
+
+.post-header h2 {
+	font-family: var(--font-mono);
+	font-size: 1.8em;
+	margin: 0 0 10px 0;
+}
+
+.post-header h2 a {
+	color: var(--text-color);
+}
+
+.post-header h2 a:hover {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+.post-meta {
+	font-family: var(--font-mono);
+	font-size: 0.85em;
+	color: #999999;
+	margin-bottom: 20px;
+}
+
+.post-meta span {
+	margin-right: 10px;
+}
+
+.post-meta .meta-prompt {
+	color: var(--accent-color);
+	margin-right: 3px;
+}
+
+.post-meta a {
+	color: #aaa;
+	text-decoration: underline;
+}
+
+.post-meta a:hover {
+	color: var(--accent-color);
+}
+
+.post-content p {
+	margin-bottom: 1em;
+}
+
+.read-more {
+	display: inline-block;
+	margin-top: 15px;
+	font-family: var(--font-mono);
+	border: 1px solid var(--accent-color);
+	padding: 8px 15px;
+	color: var(--accent-color);
+}
+
+.read-more:hover {
+	background-color: rgba(0, 255, 0, 0.1);
+	color: var(--secondary-accent);
+	text-decoration: none;
+}

@@ -1,0 +1,20 @@
+/* --- Sidebar --- */
+.sidebar {
+	grid-area: sidebar;
+}
+
+.widget {
+	background-color: #222222;
+	border: 1px solid var(--border-color);
+	padding: 20px;
+	margin-bottom: 30px;
+}
+
+.widget h3 {
+	font-family: var(--font-mono);
+	color: var(--text-color);
+	margin: 0 0 15px 0;
+	font-size: 1.2em;
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 5px;
+}

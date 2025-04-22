@@ -1,0 +1,34 @@
+/* --- Base Styles & Variables --- */
+:root {
+	--background-color: #1a1a1a;
+	--text-color: #cccccc;
+	--accent-color: #00ff00;
+	--secondary-accent: #33ff33;
+	--border-color: #333333;
+	--code-bg-color: #111111;
+
+	--font-body: 'Montserrat', sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+body {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	font-family: var(--font-body);
+	line-height: 1.6;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+}
+
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+	transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus {
+	color: var(--secondary-accent);
+	text-decoration: underline;
+}

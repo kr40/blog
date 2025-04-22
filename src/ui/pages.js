@@ -7,7 +7,12 @@ import css from 'highlight.js/lib/languages/css';
 import javascript from 'highlight.js/lib/languages/javascript';
 import python from 'highlight.js/lib/languages/python';
 import xml from 'highlight.js/lib/languages/xml'; // For HTML
-import { slugify } from '../utils.js'; // Import slugify
+import {
+	addCopyButtonsToCodeBlocks,
+	createAuthorLink,
+	createPaginationControls,
+	createTagsHtml
+} from './uiUtils.js'; // Import UI helpers
 
 // Register only the languages we need
 hljs.registerLanguage('javascript', javascript);
@@ -19,68 +24,14 @@ hljs.registerLanguage('html', xml);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('css', css);
 
-// Helper functions
-function createAuthorLink(authorName) {
-  const name = authorName || 'Unknown Author';
-  const authorSlug = slugify(name);
-  return `<a href="#/author/${authorSlug}">${name}</a>`;
-}
-
-function createTagsHtml(tags) {
-  return tags && Array.isArray(tags)
-    ? tags.map(tag => {
-        const tagSlug = slugify(tag);
-        return `<a href="#/tag/${tagSlug}">[#${tag}]</a>`;
-      }).join(' ')
-    : 'N/A';
-}
-
-// Function to add copy buttons to code blocks
-function addCopyButtonsToCodeBlocks() {
-  const codeBlocks = document.querySelectorAll('pre code');
-
-  codeBlocks.forEach((codeBlock) => {
-    // Only add button if parent doesn't already have one
-    if (!codeBlock.parentNode.querySelector('.copy-button')) {
-      const button = document.createElement('button');
-      button.className = 'copy-button';
-      button.textContent = 'Copy';
-
-      button.addEventListener('click', () => {
-        // Copy text content to clipboard
-        const code = codeBlock.textContent;
-        navigator.clipboard.writeText(code).then(
-          () => {
-            // Visual feedback
-            button.textContent = 'Copied!';
-            button.classList.add('copied');
-
-            // Reset after 2 seconds
-            setTimeout(() => {
-              button.textContent = 'Copy';
-              button.classList.remove('copied');
-            }, 2000);
-          },
-          (err) => {
-            console.error('Could not copy code: ', err);
-            button.textContent = 'Error!';
-            setTimeout(() => {
-              button.textContent = 'Copy';
-            }, 2000);
-          }
-        );
-      });
-
-      codeBlock.parentNode.appendChild(button);
-    }
-  });
-}
+// Constants
+const POSTS_PER_PAGE = 3; // Number of posts to display per page
 
 // Renders the list of posts (homepage, filtered views)
-export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
-    targetElement.innerHTML = ''; // Clear previous content
+export function renderPostList(posts, targetElement, listTitle = "Blog Posts", options = {}) {
+    const { currentPage = 1, baseUrl = '#' } = options;
+    targetElement.innerHTML = '';
 
-    // Add a title for the list view
     const titleElement = document.createElement('h2');
     titleElement.textContent = listTitle;
     titleElement.style.fontFamily = 'var(--font-mono)';
@@ -94,9 +45,21 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
         return;
     }
 
+    // Calculate pagination
+    const totalPosts = posts.length;
+    const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+
+    // Ensure current page is valid
+    const validCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+
+    // Get posts for current page
+    const startIndex = (validCurrentPage - 1) * POSTS_PER_PAGE;
+    const endIndex = Math.min(startIndex + POSTS_PER_PAGE, totalPosts);
+    const postsForCurrentPage = posts.slice(startIndex, endIndex);
+
     const moreTag = '<!-- more -->';
 
-    posts.forEach(post => {
+    postsForCurrentPage.forEach(post => {
         const postElement = document.createElement('article');
         postElement.classList.add('post');
 
@@ -129,10 +92,15 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts") {
         targetElement.appendChild(postElement);
     });
 
-    hljs.highlightAll(); // Apply highlighting after adding all posts
-    addCopyButtonsToCodeBlocks();
+    // Add pagination controls
+    if (totalPages > 1) {
+        const paginationContainer = document.createElement('div');
+        paginationContainer.innerHTML = createPaginationControls(validCurrentPage, totalPages, baseUrl);
+        targetElement.appendChild(paginationContainer);
+    }
 
-    // Optional: Add pagination if needed
+    hljs.highlightAll();
+    addCopyButtonsToCodeBlocks();
 }
 
 // Renders a single full post

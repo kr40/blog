@@ -1,6 +1,20 @@
-import 'highlight.js/styles/atom-one-dark.css';
 import { initializeApp } from './src/app.js';
-import './style.css';
+
+// Import Highlight.js theme first
+import 'highlight.js/styles/atom-one-dark.css';
+
+// Import new modular CSS files in order
+import './src/styles/base.css';
+import './src/styles/code.css';
+import './src/styles/footer.css';
+import './src/styles/header.css';
+import './src/styles/layout.css';
+import './src/styles/loader.css';
+import './src/styles/pagination.css';
+import './src/styles/post.css';
+import './src/styles/responsive.css';
+import './src/styles/sidebar.css';
+import './src/styles/widgets.css';
 
 const loadingOverlay = document.getElementById('loading-overlay');
 const progressBar = document.getElementById('progress-bar');
