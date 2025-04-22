@@ -13,8 +13,8 @@
 	--code-bg-color: #111111;
 	/* Slightly darker for code blocks */
 
-	--font-body: 'Inter', sans-serif;
-	--font-mono: 'Fira Code', 'Courier New', monospace;
+	--font-body: 'Montserrat', sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 }
 
 body {
