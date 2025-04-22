@@ -1,4 +1,5 @@
 import { marked } from 'marked';
+import '../styles/admin.css'; // Import CSS for Vite/bundler
 import { slugify } from './utils.js';
 
 // --- Highlight.js Setup ---
