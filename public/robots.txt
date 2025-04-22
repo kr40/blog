@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# You can also add the Sitemap location here once generated:
+Sitemap: /sitemap.xml
