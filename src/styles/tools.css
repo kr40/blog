@@ -1,0 +1,425 @@
+/* Base styles are now imported via JS from base.css */
+
+/* Retain specific layout, form, and tool styles below */
+
+/* --- NEW HEADER --- */
+.tools-header {
+	background-color: var(--background-secondary);
+	border-bottom: 1px solid var(--border-color);
+	padding: 10px 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: var(--font-mono);
+}
+
+.header-title {
+	font-size: 1.2em;
+	color: var(--text-primary);
+}
+
+.top-nav a {
+	color: var(--accent-color);
+	text-decoration: none;
+	font-size: 0.9em;
+}
+
+.top-nav a:hover {
+	text-decoration: underline;
+}
+
+/* --- LAYOUT --- */
+.tools-layout {
+	display: flex;
+	width: 100%;
+	flex-grow: 1;
+}
+
+.tools-sidebar {
+	width: 220px;
+	background-color: var(--background-primary);
+	border-right: 1px solid var(--border-color);
+	padding: 30px 20px;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	font-family: var(--font-mono);
+}
+
+.tools-nav {}
+
+.tools-nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.tools-nav li {
+	margin-bottom: 10px;
+}
+
+.tools-nav a {
+	display: block;
+	font-family: var(--font-mono);
+	color: var(--text-secondary);
+	text-decoration: none;
+	padding: 8px 10px;
+	border-radius: 3px;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tools-nav a:hover {
+	background-color: var(--background-secondary);
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+.tools-nav a.active {
+	background-color: var(--accent-color-faded);
+	color: var(--accent-color);
+	font-weight: bold;
+}
+
+.tools-main-content {
+	flex-grow: 1;
+	padding: 30px;
+	overflow-y: auto;
+}
+
+/* Styles for the tool container */
+.tools-tool-container {
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* Adjust heading margins within tool container */
+.tools-tool-container h1 {
+	text-align: left;
+	margin-top: 0;
+}
+
+.tools-tool-container h2 {
+	margin-top: 30px;
+}
+
+h1,
+h2 {
+	color: var(--accent-color);
+	border-bottom: 1px dashed var(--border-color);
+	padding-bottom: 10px;
+	margin-bottom: 25px;
+	font-family: var(--font-mono);
+	font-weight: normal;
+}
+
+/* Keep specific H1/H2 for tools if needed */
+.tools-tool-container#calculator-tool h1 {
+	text-align: center;
+	font-size: 1.8em;
+}
+
+#post-form {
+	margin-top: 20px;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group.form-group-full {
+	grid-column: 1 / -1;
+}
+
+label {
+	margin-bottom: 8px;
+	font-weight: bold;
+	color: var(--text-secondary);
+	font-family: var(--font-mono);
+	font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+	padding: 10px;
+	background-color: var(--background-primary);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	border-radius: 3px;
+	font-family: var(--font-mono);
+	font-size: 0.95em;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border-color: var(--accent-color);
+	box-shadow: 0 0 0 2px var(--accent-color-faded);
+}
+
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23cccccc" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 12px;
+	padding-right: 30px;
+}
+
+/* Style EasyMDE to match */
+.EasyMDEContainer .CodeMirror {
+	border: 1px solid var(--border-color);
+	background-color: var(--background-primary);
+	color: var(--text-primary);
+	border-radius: 3px;
+	font-family: var(--font-mono);
+	min-height: 300px;
+}
+
+/* Make the editor cursor visible */
+.EasyMDEContainer .CodeMirror-cursor {
+	border-left: 1px solid var(--accent-color);
+}
+
+/* Style the text selection */
+.EasyMDEContainer .CodeMirror-selected {
+	background-color: rgba(70, 80, 90, 0.85) !important;
+	color: var(--text-primary) !important;
+}
+
+.EasyMDEContainer .editor-toolbar {
+	background-color: var(--background-secondary);
+	border-color: var(--border-color);
+}
+
+.EasyMDEContainer .editor-toolbar button {
+	color: var(--text-secondary) !important;
+	border-color: var(--border-color);
+}
+
+.EasyMDEContainer .editor-toolbar button:hover,
+.EasyMDEContainer .editor-toolbar button.active {
+	background: var(--background-primary);
+	color: var(--accent-color) !important;
+	border-color: var(--accent-color);
+}
+
+.EasyMDEContainer .editor-statusbar {
+	background-color: var(--background-secondary);
+	color: var(--text-secondary);
+	border-color: var(--border-color);
+	font-size: 0.8em;
+	padding: 3px 8px;
+}
+
+/* Default button style - less prominent */
+button[type="submit"] {
+	display: block;
+	width: 100%;
+	padding: 12px 20px;
+	background-color: transparent;
+	color: var(--accent-color);
+	border: 1px solid var(--accent-color);
+	border-radius: 3px;
+	font-size: 1.1rem;
+	font-family: var(--font-mono);
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+	margin-top: 20px;
+	text-transform: uppercase;
+}
+
+/* Hover/Focus style - more prominent */
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+	background-color: var(--accent-color);
+	color: #000000;
+}
+
+/* --- Calculator Styles --- */
+.calculator {
+	max-width: 300px;
+	margin: 20px auto;
+	background-color: var(--background-primary);
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	padding: 15px;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+#calc-display {
+	width: 100%;
+	background-color: var(--code-bg-color);
+	border: 1px solid var(--border-color);
+	color: var(--accent-color);
+	font-family: var(--font-mono);
+	font-size: 1.8em;
+	text-align: right;
+	padding: 10px 15px;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+#calc-display::placeholder {
+	color: rgba(0, 255, 0, 0.4);
+}
+
+.calc-buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+
+.calc-buttons button {
+	font-family: var(--font-mono);
+	font-size: 1.2em;
+	padding: 15px;
+	background-color: var(--background-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	cursor: pointer;
+	transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.calc-buttons button:hover {
+	background-color: var(--accent-color-faded);
+	border-color: var(--accent-color);
+	color: var(--accent-color);
+}
+
+.calc-buttons button:active {
+	background-color: var(--accent-color);
+	color: var(--background-primary);
+}
+
+/* Style operator buttons */
+.calc-buttons button.operator {
+	background-color: var(--border-color);
+	color: var(--accent-color);
+}
+
+.calc-buttons button.operator:hover {
+	background-color: var(--accent-color);
+	color: var(--background-primary);
+	border-color: var(--accent-color);
+}
+
+/* Style equals button */
+.calc-buttons button.equals {
+	grid-column: span 4;
+	background-color: var(--accent-color);
+	color: var(--background-primary);
+	font-weight: bold;
+}
+
+.calc-buttons button.equals:hover {
+	background-color: transparent;
+	color: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+/* Style Clear button */
+#calc-clear {
+	background-color: #666;
+	color: #eee;
+}
+
+#calc-clear:hover {
+	background-color: #888;
+	border-color: #aaa;
+	color: #fff;
+}
+
+/* --- EasyMDE Overrides --- */
+
+/* Keep styles for the preview pane content, but remove layout overrides */
+
+/* Style the preview pane */
+.editor-preview {
+	background-color: var(--background-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+	padding: 20px;
+	font-family: var(--font-body);
+	line-height: 1.6;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
+
+.editor-preview h1,
+.editor-preview h2,
+.editor-preview h3,
+.editor-preview h4,
+.editor-preview h5,
+.editor-preview h6 {
+	font-family: var(--font-mono);
+	color: var(--accent-color);
+	border-bottom: 1px dashed var(--border-color);
+	padding-bottom: 8px;
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+}
+
+.editor-preview a {
+	color: var(--accent-color);
+}
+
+.editor-preview a:hover {
+	color: var(--secondary-accent);
+}
+
+.editor-preview p {
+	margin-bottom: 1em;
+}
+
+.editor-preview ul,
+.editor-preview ol {
+	margin-bottom: 1em;
+	padding-left: 2em;
+}
+
+.editor-preview li {
+	margin-bottom: 0.5em;
+}
+
+.editor-preview pre {
+	background-color: var(--code-bg-color);
+	border: 1px solid var(--border-color);
+	padding: 1em;
+	overflow-x: auto;
+	border-radius: 3px;
+}
+
+.editor-preview code {
+	font-family: var(--font-mono);
+	background-color: rgba(0, 255, 0, 0.05);
+	/* Subtle background for inline code */
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 0.9em;
+}
+
+.editor-preview pre code {
+	background-color: transparent;
+	padding: 0;
+	font-size: inherit;
+	border-radius: 0;
+}
