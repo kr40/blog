@@ -42,12 +42,13 @@
 }
 
 .post-meta a {
-	color: #aaa;
-	text-decoration: underline;
+	color: var(--accent-color);
+	text-decoration: none;
 }
 
 .post-meta a:hover {
-	color: var(--accent-color);
+	color: var(--secondary-accent);
+	text-decoration: underline;
 }
 
 .post-content p {

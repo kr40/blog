@@ -22,6 +22,13 @@
 .widget ul li a {
 	font-family: var(--font-mono);
 	font-size: 0.9em;
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+.widget ul li a:hover {
+	color: var(--secondary-accent);
+	text-decoration: underline;
 }
 
 /* Tag Cloud Widget */
@@ -33,11 +40,12 @@
 	padding: 3px 8px;
 	margin: 3px;
 	border-radius: 3px;
-	color: #aaa;
+	color: var(--accent-color);
+	text-decoration: none;
 }
 
 .tag-cloud a:hover {
-	color: var(--accent-color);
+	color: var(--secondary-accent);
 	border-color: var(--accent-color);
 	background-color: rgba(0, 255, 0, 0.05);
 	text-decoration: none;
