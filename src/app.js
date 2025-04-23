@@ -1,6 +1,7 @@
 // Main application setup and initialization logic
 import { loadAndParsePosts } from './data.js';
 import { handleRouteChange, setupRouting } from './router.js';
+import { setupSearchWidget } from './ui/search.js';
 import { renderAuthorsWidget, renderCategoriesWidget, renderRecentPostsWidget, renderTagsWidget } from './ui/widgets.js';
 import { slugify } from './utils.js';
 
@@ -19,6 +20,9 @@ export async function initializeApp() {
     renderCategoriesWidget(posts, slugify);
     renderAuthorsWidget(posts, slugify);
     renderTagsWidget(posts, slugify);
+
+    // 2.1 Setup Search Widget (after posts are loaded)
+    setupSearchWidget();
 
     // 3. Setup Routing
     const routerReady = setupRouting();

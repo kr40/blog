@@ -8,10 +8,10 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import python from 'highlight.js/lib/languages/python';
 import xml from 'highlight.js/lib/languages/xml'; // For HTML
 import {
-	addCopyButtonsToCodeBlocks,
-	createAuthorLink,
-	createPaginationControls,
-	createTagsHtml
+    addCopyButtonsToCodeBlocks,
+    createAuthorLink,
+    createPaginationControls,
+    createTagsHtml
 } from './uiUtils.js'; // Import UI helpers
 
 // Register only the languages we need
@@ -29,7 +29,8 @@ const POSTS_PER_PAGE = 3; // Number of posts to display per page
 
 // Renders the list of posts (homepage, filtered views)
 export function renderPostList(posts, targetElement, listTitle = "Blog Posts", options = {}) {
-    const { currentPage = 1, baseUrl = '#' } = options;
+    // Use || {} to provide a fallback empty object if options is null/undefined
+    const { currentPage = 1, baseUrl = '#' } = options || {};
     targetElement.innerHTML = '';
 
     const titleElement = document.createElement('h2');

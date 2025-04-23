@@ -42,3 +42,58 @@
 	background-color: rgba(0, 255, 0, 0.05);
 	text-decoration: none;
 }
+
+.authors-widget ul,
+.tags-widget .tag-cloud {
+	margin-top: 0.5em;
+}
+
+/* Search Widget Styles */
+.search-widget h3 {
+	margin-bottom: 0.75em;
+	/* Consistent margin with other widgets */
+}
+
+#search-input {
+	width: 100%;
+	padding: 0.6em 0.8em;
+	background-color: var(--background-secondary);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	font-family: var(--font-mono);
+	font-size: 0.9em;
+	border-radius: 3px;
+	box-sizing: border-box;
+	/* Include padding and border in the element's total width and height */
+}
+
+#search-input:focus {
+	outline: none;
+	border-color: var(--accent-color);
+	box-shadow: 0 0 0 2px var(--accent-color-faded);
+}
+
+/* Style for the placeholder text */
+#search-input::placeholder {
+	color: var(--text-secondary);
+	opacity: 0.8;
+	/* Make placeholder slightly less prominent */
+}
+
+/* Clear button (X) for search input type in WebKit browsers */
+#search-input::-webkit-search-cancel-button {
+	appearance: none;
+	/* Remove default styling */
+	-webkit-appearance: none;
+	height: 12px;
+	width: 12px;
+	background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+	background-size: 12px 12px;
+	cursor: pointer;
+	opacity: 0.6;
+	transition: opacity 0.2s ease;
+}
+
+#search-input::-webkit-search-cancel-button:hover {
+	opacity: 1;
+}
