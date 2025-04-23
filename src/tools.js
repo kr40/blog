@@ -1,7 +1,7 @@
 import EasyMDE from 'easymde';
-import 'easymde/dist/easymde.min.css'; // Re-add JS import
-import '../src/styles/base.css'; // Import base styles for variables and body defaults
-import '../src/styles/tools.css'; // Import page-specific styles
+import 'easymde/dist/easymde.min.css';
+import '../src/styles/base.css';
+import '../src/styles/tools.css';
 
 // No DOMContentLoaded wrapper needed with module scripts handled by Vite
 
@@ -39,7 +39,7 @@ function setupMarkdownEditor() {
                 "bold", "italic", "strikethrough", "heading", "|",
                 "quote", "unordered-list", "ordered-list", "|",
                 "link", "image", "table", "horizontal-rule", "|",
-                "preview", "|",
+                "preview", "side-by-side", "fullscreen", "|",
                 "guide"
             ]
         });
@@ -96,10 +96,8 @@ function setupMarkdownEditor() {
         });
 
         isMarkdownEditorInitialized = true;
-        // console.log("Markdown Editor Initialized");
     } catch (error) {
-        // Fail silently in production for tool init errors
-        // console.error("Error initializing Markdown Editor tool:", error);
+        // Error handling can be added back in development if needed
     }
 }
 
@@ -107,11 +105,11 @@ function setupCalculator() {
     if (isCalculatorInitialized) return;
     try {
         const calculatorToolContainer = document.getElementById('calculator-tool');
-         if (!calculatorToolContainer) throw new Error("Calculator container not found");
+        if (!calculatorToolContainer) throw new Error("Calculator container not found");
 
         const calcDisplay = document.getElementById('calc-display');
         const calcButtonsContainer = calculatorToolContainer.querySelector('.calc-buttons');
-         if (!calcDisplay || !calcButtonsContainer) throw new Error("Calculator elements missing");
+        if (!calcDisplay || !calcButtonsContainer) throw new Error("Calculator elements missing");
 
         let currentInput = '0';
         let operator = null;
@@ -176,27 +174,19 @@ function setupCalculator() {
 
         updateDisplay();
         isCalculatorInitialized = true;
-        // console.log("Calculator Initialized");
     } catch (error) {
-        // Fail silently in production for tool init errors
-        // console.error("Error initializing Calculator tool:", error);
+        // Error handling can be added back in development if needed
     }
 }
 
 // --- Tool Switching Logic ---
 function switchTool(hash) {
-    // Query for containers *inside* the function
     const toolContainers = document.querySelectorAll('.tools-tool-container');
-
     const defaultHash = '#markdown-editor';
     const targetHash = (hash && document.querySelector(hash + '-tool')) ? hash : defaultHash;
     const targetId = targetHash.substring(1) + '-tool';
 
-    console.log('Switching tool. Target ID:', targetId, 'Found containers:', toolContainers.length);
-
-    // Hide all containers first
     toolContainers.forEach(container => {
-        console.log('Hiding container:', container.id);
         container.style.display = 'none';
     });
 

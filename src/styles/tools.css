@@ -1,7 +1,5 @@
 /* Base styles are now imported via JS from base.css */
 
-/* Retain specific layout, form, and tool styles below */
-
 /* --- NEW HEADER --- */
 .tools-header {
 	background-color: var(--background-secondary);
@@ -45,8 +43,6 @@
 	flex-shrink: 0;
 	font-family: var(--font-mono);
 }
-
-.tools-nav {}
 
 .tools-nav ul {
 	list-style: none;
@@ -93,7 +89,6 @@
 	padding: 0;
 }
 
-/* Adjust heading margins within tool container */
 .tools-tool-container h1 {
 	text-align: left;
 	margin-top: 0;
@@ -113,7 +108,6 @@ h2 {
 	font-weight: normal;
 }
 
-/* Keep specific H1/H2 for tools if needed */
 .tools-tool-container#calculator-tool h1 {
 	text-align: center;
 	font-size: 1.8em;
@@ -181,61 +175,12 @@ select {
 	padding-right: 30px;
 }
 
-/* Style option text - using hardcoded colors */
 select option {
 	color: #222;
-	/* Dark grey text */
 	background-color: #fff;
-	/* White background */
 }
 
-/* Style EasyMDE to match */
-.EasyMDEContainer .CodeMirror {
-	border: 1px solid var(--border-color);
-	background-color: var(--background-primary);
-	color: var(--text-primary);
-	border-radius: 3px;
-	font-family: var(--font-mono);
-	min-height: 300px;
-}
-
-/* Make the editor cursor visible */
-.EasyMDEContainer .CodeMirror-cursor {
-	border-left: 1px solid var(--accent-color);
-}
-
-/* Style the text selection */
-.EasyMDEContainer .CodeMirror-selected {
-	background-color: rgba(70, 80, 90, 0.85) !important;
-	color: var(--text-primary) !important;
-}
-
-.EasyMDEContainer .editor-toolbar {
-	background-color: var(--background-secondary);
-	border-color: var(--border-color);
-}
-
-.EasyMDEContainer .editor-toolbar button {
-	color: var(--text-secondary) !important;
-	border-color: var(--border-color);
-}
-
-.EasyMDEContainer .editor-toolbar button:hover,
-.EasyMDEContainer .editor-toolbar button.active {
-	background: var(--background-primary);
-	color: var(--accent-color) !important;
-	border-color: var(--accent-color);
-}
-
-.EasyMDEContainer .editor-statusbar {
-	background-color: var(--background-secondary);
-	color: var(--text-secondary);
-	border-color: var(--border-color);
-	font-size: 0.8em;
-	padding: 3px 8px;
-}
-
-/* Default button style - less prominent */
+/* Button styles */
 button[type="submit"] {
 	display: block;
 	width: 100%;
@@ -253,7 +198,6 @@ button[type="submit"] {
 	text-transform: uppercase;
 }
 
-/* Hover/Focus style - more prominent */
 button[type="submit"]:hover,
 button[type="submit"]:focus {
 	background-color: var(--accent-color);
@@ -318,7 +262,6 @@ button[type="submit"]:focus {
 	color: var(--background-primary);
 }
 
-/* Style operator buttons */
 .calc-buttons button.operator {
 	background-color: var(--border-color);
 	color: var(--accent-color);
@@ -330,7 +273,6 @@ button[type="submit"]:focus {
 	border-color: var(--accent-color);
 }
 
-/* Style equals button */
 .calc-buttons button.equals {
 	grid-column: span 4;
 	background-color: var(--accent-color);
@@ -344,7 +286,6 @@ button[type="submit"]:focus {
 	border-color: var(--accent-color);
 }
 
-/* Style Clear button */
 #calc-clear {
 	background-color: #666;
 	color: #eee;
@@ -356,78 +297,92 @@ button[type="submit"]:focus {
 	color: #fff;
 }
 
-/* --- EasyMDE Overrides --- */
-
-/* Keep styles for the preview pane content, but remove layout overrides */
-
-/* Style the preview pane */
-.editor-preview {
-	background-color: var(--background-secondary);
-	color: var(--text-primary);
-	border: 1px solid var(--border-color);
-	padding: 20px;
-	font-family: var(--font-body);
-	line-height: 1.6;
-	overflow-y: auto;
-	box-sizing: border-box;
-}
-
-.editor-preview h1,
-.editor-preview h2,
-.editor-preview h3,
-.editor-preview h4,
-.editor-preview h5,
-.editor-preview h6 {
-	font-family: var(--font-mono);
-	color: var(--accent-color);
-	border-bottom: 1px dashed var(--border-color);
-	padding-bottom: 8px;
-	margin-top: 1.5em;
-	margin-bottom: 1em;
-}
-
-.editor-preview a {
-	color: var(--accent-color);
-}
-
-.editor-preview a:hover {
-	color: var(--secondary-accent);
-}
-
-.editor-preview p {
-	margin-bottom: 1em;
-}
-
-.editor-preview ul,
-.editor-preview ol {
-	margin-bottom: 1em;
-	padding-left: 2em;
-}
-
-.editor-preview li {
-	margin-bottom: 0.5em;
-}
-
-.editor-preview pre {
-	background-color: var(--code-bg-color);
-	border: 1px solid var(--border-color);
-	padding: 1em;
-	overflow-x: auto;
-	border-radius: 3px;
-}
-
-.editor-preview code {
-	font-family: var(--font-mono);
-	background-color: rgba(0, 255, 0, 0.05);
-	/* Subtle background for inline code */
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 0.9em;
-}
-
-.editor-preview pre code {
+/* --- EasyMDE Styling --- */
+.EasyMDEContainer .editor-toolbar button {
+	color: var(--text-primary) !important;
+	border-color: var(--border-color);
 	background-color: transparent;
-	padding: 0;
-	font-size: inherit;
-	border-radius: 0;
+	border: 1px solid transparent;
+}
+
+.EasyMDEContainer .editor-toolbar button:hover {
+	background: var(--background-primary);
+	color: var(--accent-color) !important;
+	border-color: var(--border-color);
+}
+
+.EasyMDEContainer .editor-toolbar button.active {
+	background: var(--background-primary);
+	color: var(--accent-color) !important;
+	border-color: var(--accent-color);
+}
+
+/* Main editor area */
+.EasyMDEContainer .CodeMirror {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	border-color: var(--border-color);
+	font-family: var(--font-mono);
+	border-radius: 3px;
+}
+
+/* Editor gutter (line numbers) */
+.EasyMDEContainer .CodeMirror-gutters {
+	background-color: var(--code-bg-color);
+	border-color: var(--border-color);
+}
+
+/* Editor toolbar */
+.EasyMDEContainer .editor-toolbar {
+	background-color: var(--background-color);
+	border-color: var(--border-color);
+}
+
+/* Preview area */
+.EasyMDEContainer .editor-preview,
+.EasyMDEContainer .editor-preview-side {
+	background-color: var(--background-color);
+	color: var(--text-color);
+	font-family: var(--font-body);
+}
+
+/* Preview area code blocks */
+.EasyMDEContainer .editor-preview pre,
+.EasyMDEContainer .editor-preview-side pre {
+	background-color: var(--code-bg-color);
+	font-family: var(--font-mono);
+	border-color: var(--border-color);
+	padding: 10px;
+	border-radius: 3px;
+}
+
+/* The cursor */
+.EasyMDEContainer .CodeMirror-cursor {
+	border-left-color: var(--accent-color);
+}
+
+/* Selected text */
+.EasyMDEContainer .CodeMirror-selected {
+	background-color: rgba(0, 255, 0, 0.3);
+}
+
+/* Active selection */
+.EasyMDEContainer .CodeMirror div.CodeMirror-selected {
+	background-color: rgba(0, 255, 0, 0.3) !important;
+}
+
+.EasyMDEContainer .CodeMirror-focused div.CodeMirror-selected {
+	background-color: rgba(0, 255, 0, 0.3) !important;
+}
+
+/* Text in active selection */
+.EasyMDEContainer .CodeMirror-selectedtext {
+	color: var(--background-color) !important;
+	background-color: var(--accent-color) !important;
+	opacity: 0.8;
+}
+
+/* Active line background */
+.EasyMDEContainer .CodeMirror-activeline-background {
+	background-color: rgba(255, 255, 255, 0.05);
 }

@@ -11,7 +11,7 @@ const projectRoot = path.resolve(__dirname, '..');
 const blogsDir = path.join(projectRoot, 'blogs');
 const distDir = path.join(projectRoot, 'dist');
 
-const BASE_URL = 'https://exploitlog.vercel.app'; // CHANGE THIS TO YOUR ACTUAL DOMAIN!
+const BASE_URL = 'https://exploitlog.vercel.app';
 
 async function loadPostsForSitemap() {
     const posts = [];

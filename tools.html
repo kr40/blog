@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - ./The_Exploit_Log</title>
-    <!-- Re-add Google Fonts link needed for this entry point -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Montserrat:wght@400&display=swap"
         rel="stylesheet" />
-    <!-- CSS imported via JS -->
 </head>
 <body>
     <header class="tools-header">
@@ -55,15 +53,15 @@
                                 <option value="ctf">CTF</option>
                             </select>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="fm-category">Category:</label>
                             <input type="text" id="fm-category" name="category" required>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="fm-tags">Tags (comma-separated):</label>
                             <input type="text" id="fm-tags" name="tags" placeholder="e.g., security, web, exploit">
                         </div>
-                         <div class="form-group form-group-full">
+                        <div class="form-group form-group-full">
                             <label for="fm-slug">Slug (optional, auto-generated from title if empty):</label>
                             <input type="text" id="fm-slug" name="slug" placeholder="e.g., my-awesome-post">
                         </div>
@@ -77,7 +75,7 @@
                     <button type="submit" id="download-button">Generate & Download .md File</button>
                 </form>
             </div>
-            <!-- Calculator Tool -->
+
             <div class="tools-tool-container" id="calculator-tool" style="display: none;">
                 <h1>Simple Calculator</h1>
                 <div class="calculator">
@@ -107,11 +105,9 @@
                     </div>
                 </div>
             </div>
-            <!-- Add containers for future tools here -->
         </main>
     </div>
 
-    <!-- Scripts will be loaded via module import -->
     <script type="module" src="/src/tools.js"></script>
 </body>
 </html>
