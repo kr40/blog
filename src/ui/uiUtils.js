@@ -12,8 +12,8 @@ export function createTagsHtml(tags) {
   return tags && Array.isArray(tags)
     ? tags.map(tag => {
         const tagSlug = slugify(tag);
-        return `<a href="#/tag/${tagSlug}">[#${tag}]</a>`;
-      }).join(' ')
+        return `<a href="#/tag/${tagSlug}">#${tag}</a>`;
+      }).join(', ')
     : 'N/A';
 }
 
