@@ -181,6 +181,14 @@ select {
 	padding-right: 30px;
 }
 
+/* Style option text - using hardcoded colors */
+select option {
+	color: #222;
+	/* Dark grey text */
+	background-color: #fff;
+	/* White background */
+}
+
 /* Style EasyMDE to match */
 .EasyMDEContainer .CodeMirror {
 	border: 1px solid var(--border-color);
