@@ -182,7 +182,7 @@ function setupCalculator() {
 // --- Tool Switching Logic ---
 function switchTool(hash) {
     const toolContainers = document.querySelectorAll('.tools-tool-container');
-    const defaultHash = '#markdown-editor';
+    const defaultHash = '#about';
     const targetHash = (hash && document.querySelector(hash + '-tool')) ? hash : defaultHash;
     const targetId = targetHash.substring(1) + '-tool';
 
@@ -199,9 +199,8 @@ function switchTool(hash) {
             setupCalculator();
         }
     } else {
-        const fallbackContainer = document.getElementById('markdown-editor-tool');
+        const fallbackContainer = document.getElementById('about-tool');
         if (fallbackContainer) fallbackContainer.style.display = 'block';
-        setupMarkdownEditor();
     }
 
     navLinks.forEach(link => {

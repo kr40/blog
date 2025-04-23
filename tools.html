@@ -22,14 +22,32 @@
         <aside class="tools-sidebar">
             <nav class="tools-nav">
                 <ul>
-                    <li><a href="#markdown-editor" class="active">[ Markdown Editor ]</a></li>
+                    <li><a href="#about" class="active">[ About ]</a></li>
+                    <li><a href="#markdown-editor">[ Markdown Editor ]</a></li>
                     <li><a href="#calculator">[ Calculator ]</a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="tools-main-content">
-            <div class="tools-tool-container" id="markdown-editor-tool">
+            <div class="tools-tool-container" id="about-tool">
+                <h1>About This Tools Page</h1>
+                <div class="about-content">
+                    <p>Welcome to my collection of useful tools! This page houses a variety of utilities that I've created or adapted because I find them interesting and potentially useful for everyday tasks.</p>
+
+                    <p>As a cybersecurity enthusiast and developer, I often need small, purpose-built tools for specific tasks. Rather than searching for these tools online each time, I've decided to build and host them here for easy access.</p>
+
+                    <p>The current toolkit includes:</p>
+                    <ul>
+                        <li><strong>Markdown Editor</strong> - A simple editor for creating blog posts with front matter, perfect for static site generation.</li>
+                        <li><strong>Calculator</strong> - A basic calculator for quick calculations.</li>
+                    </ul>
+
+                    <p>I'll be adding more tools over time as I develop them. If you have suggestions or find these tools useful, feel free to reach out!</p>
+                </div>
+            </div>
+
+            <div class="tools-tool-container" id="markdown-editor-tool" style="display: none;">
                 <form id="post-form">
                     <h2>Front Matter</h2>
                     <div class="form-grid">
@@ -98,10 +116,10 @@
 
                         <button data-value="0">0</button>
                         <button data-value=".">.</button>
-                        <button id="calc-clear" >C</button>
+                        <button id="calc-clear">C</button>
                         <button data-value="+" class="operator">+</button>
 
-                        <button id="calc-equals" class="equals" >=</button>
+                        <button id="calc-equals" class="equals">=</button>
                     </div>
                 </div>
             </div>
