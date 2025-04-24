@@ -21,6 +21,10 @@ function handleSearchInput() {
     if (!searchTerm) {
         // If search is cleared, render all posts
         renderPostList(allPosts, contentArea, "All Posts");
+        // Update URL to match the content being shown
+        if (window.location.hash.startsWith('#/posts/')) {
+            window.history.pushState(null, '', '#/');
+        }
         return;
     }
 
@@ -53,6 +57,12 @@ function handleSearchKeydown(event) {
                 window.location.hash = `#/posts/${firstResultSlug}`;
             }
         }
+    } else if (event.key === 'Escape' || event.keyCode === 27) {
+        // Clear search input and reset view to all posts when Escape is pressed
+        searchInputElement.value = '';
+        // Update the URL to match the content being shown (all posts)
+        window.location.hash = '#/';
+        // Handle search input will be triggered by the URL change event
     }
 }
 
