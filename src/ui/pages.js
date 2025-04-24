@@ -8,10 +8,10 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import python from 'highlight.js/lib/languages/python';
 import xml from 'highlight.js/lib/languages/xml'; // For HTML
 import {
-    addCopyButtonsToCodeBlocks,
-    createAuthorLink,
-    createPaginationControls,
-    createTagsHtml
+	addCopyButtonsToCodeBlocks,
+	createAuthorLink,
+	createPaginationControls,
+	createTagsHtml
 } from './uiUtils.js'; // Import UI helpers
 
 // Register only the languages we need
@@ -73,6 +73,8 @@ export function renderPostList(posts, targetElement, listTitle = "Blog Posts", o
 
         if (moreTagIndex !== -1) {
             postContentHtml = postContentHtml.substring(0, moreTagIndex);
+            // Add ellipsis to indicate there's more content
+            postContentHtml += '<span class="post-ellipsis">...</span>';
             readMoreLink = `<a href="#/posts/${post.metadata.slug}" class="read-more">[ Continue Reading ]</a>`;
         }
 

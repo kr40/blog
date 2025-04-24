@@ -8,9 +8,7 @@ tags: ["security", "exploitation", "tutorial"]
 slug: "buffer-overflow-guide"
 ---
 
-Buffer overflows have been a persistent vulnerability class for decades. Understanding how they work is fundamental for both defensive programming and penetration testing...
-
-<!-- more -->
+Buffer overflows have been a persistent vulnerability class for decades. Understanding how they work is fundamental for both defensive programming and penetration testing<!-- more -->
 
 Let's look at a simple C example susceptible to a buffer overflow:
 
@@ -35,5 +33,3 @@ int main(int argc, char *argv[]) {
 ```
 
 If the input string provided via `argv[1]` is longer than 63 characters (plus the null terminator), `strcpy` will write past the end of `buffer`, potentially overwriting other important data on the stack, like the return address.
-
-<!-- We'll dynamically generate the 'read more' link if needed -->

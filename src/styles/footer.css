@@ -14,9 +14,16 @@
 }
 
 .site-footer a {
-	color: #aaa;
+	color: var(--accent-color);
+	text-decoration: none;
+	padding: 3px 8px;
+	border: 1px solid transparent;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .site-footer a:hover {
 	color: var(--accent-color);
+	border: 1px solid var(--accent-color);
+	text-decoration: none;
+	background-color: rgba(0, 255, 0, 0.05);
 }

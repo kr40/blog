@@ -8,6 +8,5 @@ tags: ["networking", "vpn", "homelab", "security"]
 slug: "secure-homelab-openvpn"
 ---
 
-A home lab is invaluable for practice. Ensuring secure remote access is crucial. OpenVPN provides a robust, open-source solution...
+A home lab is invaluable for practice. Ensuring secure remote access is crucial. OpenVPN provides a robust, open-source solution.
 
-<!-- We'll dynamically generate the 'read more' link if needed -->

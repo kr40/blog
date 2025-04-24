@@ -69,3 +69,9 @@
 	color: var(--secondary-accent);
 	text-decoration: none;
 }
+
+/* Ellipsis styling */
+.post-ellipsis {
+	color: var(--text-color);
+	margin-left: 0;
+}
