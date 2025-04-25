@@ -1,13 +1,14 @@
 import { getAllPosts } from './data.js';
 import { updateActiveNavLink } from './ui/nav.js';
 import {
-	renderAboutPage,
-	renderContactPage,
-	renderDisclaimerPage,
-	renderNotFound,
-	renderPostList,
-	renderSinglePost
+    renderAboutPage,
+    renderContactPage,
+    renderDisclaimerPage,
+    renderNotFound,
+    renderPostList,
+    renderSinglePost
 } from './ui/pages.js';
+import { renderTagsWidget } from './ui/widgets.js';
 import { slugify } from './utils.js';
 
 let contentAreaElement = null;
@@ -38,7 +39,7 @@ export function handleRouteChange() {
     const postMatch = hash.match(/^#\/posts\/(.+)$/);
     const typeMatch = hash.match(/^#\/type\/(.+)$/);
     const categoryMatch = hash.match(/^#\/category\/(.+)$/);
-    const tagMatch = hash.match(/^#\/tag\/(.+)$/);
+    const tagsMatch = hash.match(/^#\/tags\/(.+)$/);
     const authorMatch = hash.match(/^#\/author\/(.+)$/);
     const pageMatch = hash.match(/^(#(?:\/[^\/]+(?:\/[^\/]+)?)?)\/page\/(\d+)$/);
 
@@ -71,23 +72,17 @@ export function handleRouteChange() {
                 return false;
             });
             renderPostList(filteredPosts, contentAreaElement, `Category: ${categoryName || categorySlug}`, { currentPage: pageNumber, baseUrl: baseRoute });
-        } else if (baseRoute.startsWith('#/tag/')) {
-            const tagSlug = baseRoute.replace('#/tag/', '');
-            let tagName = '';
+        } else if (baseRoute.startsWith('#/tags/')) {
+            const tagSlugsString = baseRoute.replace('#/tags/', '');
+            const selectedTagSlugs = tagSlugsString.split('+').filter(Boolean);
+
             const filteredPosts = allPosts.filter(p => {
-                if (p.metadata.tags && Array.isArray(p.metadata.tags)) {
-                    return p.metadata.tags.some(tag => {
-                        const currentTagSlug = slugify(tag);
-                        if (currentTagSlug === tagSlug) {
-                            tagName = tag;
-                            return true;
-                        }
-                        return false;
-                    });
-                }
-                return false;
+                const postTags = p.metadata.tags || [];
+                const postTagSlugs = new Set(postTags.map(slugify));
+                return selectedTagSlugs.every(slug => postTagSlugs.has(slug));
             });
-            renderPostList(filteredPosts, contentAreaElement, `Tag: #${tagName || tagSlug}`, { currentPage: pageNumber, baseUrl: baseRoute });
+            const title = `Tags: #${selectedTagSlugs.join(' + #')}`;
+            renderPostList(filteredPosts, contentAreaElement, title, { currentPage: pageNumber, baseUrl: baseRoute });
         } else if (baseRoute.startsWith('#/author/')) {
             const authorSlug = baseRoute.replace('#/author/', '');
             let authorName = '';
@@ -135,24 +130,17 @@ export function handleRouteChange() {
             return false;
         });
         renderPostList(filteredPosts, contentAreaElement, `Category: ${categoryName || categorySlug}`, { baseUrl: `#/category/${categorySlug}` });
-    } else if (tagMatch && tagMatch[1]) {
-        // Filter by Tag
-        const tagSlug = tagMatch[1];
-        let tagName = '';
+    } else if (tagsMatch && tagsMatch[1]) {
+        const tagSlugsString = tagsMatch[1];
+        const selectedTagSlugs = tagSlugsString.split('+').filter(Boolean);
+
         const filteredPosts = allPosts.filter(p => {
-            if (p.metadata.tags && Array.isArray(p.metadata.tags)) {
-                return p.metadata.tags.some(tag => {
-                    const currentTagSlug = slugify(tag);
-                    if (currentTagSlug === tagSlug) {
-                        tagName = tag;
-                        return true;
-                    }
-                    return false;
-                });
-            }
-            return false;
+            const postTags = p.metadata.tags || [];
+            const postTagSlugs = new Set(postTags.map(slugify));
+            return selectedTagSlugs.every(slug => postTagSlugs.has(slug));
         });
-        renderPostList(filteredPosts, contentAreaElement, `Tag: #${tagName || tagSlug}`, { baseUrl: `#/tag/${tagSlug}` });
+        const title = `Tags: #${selectedTagSlugs.join(' + #')}`;
+        renderPostList(filteredPosts, contentAreaElement, title, { baseUrl: `#/tags/${tagSlugsString}` });
     } else if (authorMatch && authorMatch[1]) {
         // Filter by Author
         const authorSlug = authorMatch[1];
@@ -182,4 +170,7 @@ export function handleRouteChange() {
         // Default route (homepage / all posts)
         renderPostList(allPosts, contentAreaElement, "All Posts");
     }
+
+    // Re-render tags widget AFTER main content is updated to reflect current selection
+    renderTagsWidget(allPosts, slugify);
 }

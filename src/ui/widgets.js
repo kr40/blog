@@ -89,18 +89,25 @@ export function renderAuthorsWidget(posts, slugify) {
     });
 }
 
-// Renders the tags widget (tag cloud)
+// Renders the tags widget (tag cloud) and handles selection
 export function renderTagsWidget(posts, slugify) {
     const tagsContainerElement = document.querySelector('.tag-cloud-container');
-    if (!tagsContainerElement) {
-        console.warn('Tag cloud container element not found.');
+    const widgetElement = tagsContainerElement?.closest('.widget');
+    if (!tagsContainerElement || !widgetElement) {
+        console.warn('Tag cloud container or widget element not found.');
         return;
     }
 
     const allTags = posts.flatMap(post => post.metadata.tags || []);
     const uniqueTags = [...new Set(allTags)];
 
-    tagsContainerElement.innerHTML = '';
+    tagsContainerElement.innerHTML = ''; // Clear previous tags
+
+    // Remove existing clear button if any
+    const existingClearButton = widgetElement.querySelector('.clear-tags-button');
+    if (existingClearButton) {
+        existingClearButton.remove();
+    }
 
     if (uniqueTags.length === 0) {
         tagsContainerElement.innerHTML = '<span>No tags found.</span>';
@@ -109,12 +116,37 @@ export function renderTagsWidget(posts, slugify) {
 
     const sortedTags = uniqueTags.sort();
 
+    // Get currently selected tags from hash
+    const hash = window.location.hash;
+    let selectedTagSlugs = [];
+    if (hash.startsWith('#/tags/')) {
+        selectedTagSlugs = hash.substring(7).split('+').filter(Boolean);
+    }
+
     sortedTags.forEach(tag => {
         const a = document.createElement('a');
         const tagSlug = slugify(tag);
-        a.href = `#/tag/${tagSlug}`;
+        a.href = `#/tags/${tagSlug}`;
         a.textContent = `#${tag}`;
+        a.dataset.tagSlug = tagSlug;
+
+        if (selectedTagSlugs.includes(tagSlug)) {
+            a.classList.add('selected-tag');
+        }
+
         tagsContainerElement.appendChild(a);
         tagsContainerElement.appendChild(document.createTextNode(' '));
     });
+
+    // Add Clear button if more than one tag is selected
+    if (selectedTagSlugs.length > 1) {
+        const clearButton = document.createElement('button');
+        clearButton.textContent = 'Clear';
+        clearButton.title = 'Clear selected tags';
+        clearButton.className = 'clear-tags-button';
+        clearButton.addEventListener('click', () => {
+            window.location.hash = '#/';
+        });
+        widgetElement.appendChild(clearButton); // Append to the widget for positioning
+    }
 }

@@ -74,9 +74,45 @@
 	text-decoration: none;
 }
 
+/* Style for selected tags to match hover state */
+.tag-cloud a.selected-tag {
+	color: var(--secondary-accent);
+	border-color: var(--accent-color);
+	background-color: rgba(0, 255, 0, 0.05);
+	text-decoration: none;
+}
+
+/* Subtle feedback for tags when limit is reached - REMOVED */
+/* .tag-cloud a.limit-reached-feedback { */
+/*    border-color: #555; */
+/* } */
+
 .authors-widget ul,
 .tags-widget .tag-cloud {
 	margin-top: 0.5em;
+	position: relative;
+}
+
+/* Clear tags button styling */
+.clear-tags-button {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+
+	background: transparent;
+	border: 1px solid var(--border-color);
+	color: var(--text-secondary);
+	font-family: var(--font-mono);
+	font-size: 0.8em;
+	padding: 2px 6px;
+	cursor: pointer;
+	border-radius: 3px;
+	transition: all 0.2s ease;
+}
+
+.clear-tags-button:hover {
+	color: var(--accent-color);
+	border-color: var(--accent-color);
 }
 
 /* Search Widget Styles */

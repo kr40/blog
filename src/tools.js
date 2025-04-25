@@ -105,11 +105,11 @@ function setupCalculator() {
     if (isCalculatorInitialized) return;
     try {
         const calculatorToolContainer = document.getElementById('calculator-tool');
-        if (!calculatorToolContainer) throw new Error("Calculator container not found");
+         if (!calculatorToolContainer) throw new Error("Calculator container not found");
 
         const calcDisplay = document.getElementById('calc-display');
         const calcButtonsContainer = calculatorToolContainer.querySelector('.calc-buttons');
-        if (!calcDisplay || !calcButtonsContainer) throw new Error("Calculator elements missing");
+         if (!calcDisplay || !calcButtonsContainer) throw new Error("Calculator elements missing");
 
         let currentInput = '0';
         let operator = null;
